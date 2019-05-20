@@ -37,6 +37,7 @@ RUN set -ex \
     ' \
     && apt-get update -yqq \
     && apt-get upgrade -yqq \
+    && apt-get install vim \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
         freetds-bin \
