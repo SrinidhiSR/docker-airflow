@@ -37,7 +37,7 @@ RUN set -ex \
     ' \
     && apt-get update -yqq \
     && apt-get upgrade -yqq \
-    && apt-get install vim \
+    && apt-get install vim -yqq \
     && apt-get install -yqq --no-install-recommends \
         $buildDeps \
         freetds-bin \
@@ -60,6 +60,7 @@ RUN set -ex \
     && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install 'redis>=2.10.5,<3' \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
+    && pip install pyodbc \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
